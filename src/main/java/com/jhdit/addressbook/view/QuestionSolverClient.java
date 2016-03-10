@@ -3,7 +3,7 @@ package com.jhdit.addressbook.view;
 import com.jhdit.addressbook.service.Analyser;
 import com.jhdit.addressbook.domain.Contact;
 import com.jhdit.addressbook.domain.Gender;
-import com.jhdit.addressbook.persistence.DataProcessor;
+import com.jhdit.addressbook.persistence.CsvFileDataLoader;
 
 import java.io.File;
 import java.io.IOException;
@@ -38,7 +38,7 @@ public class QuestionSolverClient {
     private Analyser analyser;
 
     public QuestionSolverClient(final File inputFile) throws IOException   {
-        DataProcessor dataProcessor = new DataProcessor(inputFile);
+        CsvFileDataLoader dataProcessor = new CsvFileDataLoader(inputFile);
         this.analyser = new Analyser( dataProcessor.getContacts() );
     }
 

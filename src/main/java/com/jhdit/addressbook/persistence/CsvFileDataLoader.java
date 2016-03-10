@@ -11,17 +11,17 @@ import java.util.List;
 import java.util.Set;
 
 /**
- * Loads Address Book data from a CSV file.
+ * Processes Address Book data from a CSV file & load into a Contact collection.
  */
 
-public class DataProcessor {
+public class CsvFileDataLoader {
     private Set<Contact> set = new HashSet<>();
 
     // Constants
     private static final int NUMBER_OF_FIELDS = 3;
     private static final String DELIMITOR = ",";
 
-    public DataProcessor(final File file) throws IOException {
+    public CsvFileDataLoader(final File file) throws IOException {
         List<String> lines = Files.readAllLines(file.toPath());
         for (String line: lines)    {
             processContactLine(line);
@@ -46,6 +46,4 @@ public class DataProcessor {
         Contact contact = new Contact(fullname, Gender.valueOf( genderValue ), dob);
         set.add( contact );
     }
-
-
 }
