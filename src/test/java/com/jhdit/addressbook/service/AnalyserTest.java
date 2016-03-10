@@ -1,4 +1,4 @@
-package com.jhdit.addressbook.analysis;
+package com.jhdit.addressbook.service;
 
 import com.jhdit.addressbook.domain.Contact;
 import com.jhdit.addressbook.domain.Gender;

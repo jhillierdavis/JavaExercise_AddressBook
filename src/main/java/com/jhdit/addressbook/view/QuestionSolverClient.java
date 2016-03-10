@@ -1,6 +1,6 @@
 package com.jhdit.addressbook.view;
 
-import com.jhdit.addressbook.analysis.Analyser;
+import com.jhdit.addressbook.service.Analyser;
 import com.jhdit.addressbook.domain.Contact;
 import com.jhdit.addressbook.domain.Gender;
 import com.jhdit.addressbook.persistence.DataProcessor;
