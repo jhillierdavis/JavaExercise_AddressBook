@@ -22,6 +22,10 @@ public class CsvFileDataLoader implements AddressBookData {
     private static final String DELIMITOR = ",";
 
     public CsvFileDataLoader(final File file) throws IOException {
+        if (null == file)   {
+            throw new IllegalArgumentException("Invalid parameter: file: NULL");
+        }
+
         List<String> lines = Files.readAllLines(file.toPath());
         for (String line: lines)    {
             processContactLine(line);

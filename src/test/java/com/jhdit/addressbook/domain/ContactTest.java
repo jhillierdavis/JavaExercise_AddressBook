@@ -29,7 +29,7 @@ public class ContactTest {
             "Barek Obama, MALE, 04/08/61, 1961-08-04",
             "Hilary Clinton, FEMALE, 26/08/47, 1947-08-26"
     })
-    public void testValidInstantiation(String fullname, String genderValue, String dob, String expectedDateOfBirth) {
+    public void instantiationViaValidData(String fullname, String genderValue, String dob, String expectedDateOfBirth) {
         // given: a newly instantiated contact
         Gender gender = Gender.valueOf( genderValue );
         Contact contact = new Contact(fullname, gender, dob );
@@ -46,7 +46,7 @@ public class ContactTest {
             "Barek Obama, MALE, 04/08/61, 38",
             "Hilary Clinton, FEMALE, 26/08/47, 52"
     })
-    public void testDerivedAge(String fullname, String genderValue, String dob, long expectedAgeInYears)    {
+    public void derivedAge(String fullname, String genderValue, String dob, long expectedAgeInYears)    {
         // given: valid contact info.
         Gender gender = Gender.valueOf( genderValue );
         Contact contact = new Contact(fullname, gender, dob );
@@ -57,8 +57,8 @@ public class ContactTest {
     }
 
     @Test
-    public void testDifferenceInDays()  {
-        // given: Two contacts born exactly a year apart
+    public void checkDifferenceInDays()  {
+        // given: Two contacts born exactly one year apart
         Contact dee = new Contact("Dweedle Dee", Gender.MALE, "01/04/05");
         Contact dum = new Contact("Dweedle Dum", Gender.MALE, "01/04/06");
 
