@@ -3,6 +3,7 @@ package com.jhdit.addressbook.view;
 import com.jhdit.addressbook.service.Analyser;
 import com.jhdit.addressbook.domain.Contact;
 import com.jhdit.addressbook.domain.Gender;
+import com.jhdit.addressbook.persistence.AddressBookData;
 import com.jhdit.addressbook.persistence.CsvFileDataLoader;
 
 import java.io.File;
@@ -38,12 +39,12 @@ public class QuestionSolverClient {
     private Analyser analyser;
 
     public QuestionSolverClient(final File inputFile) throws IOException   {
-        CsvFileDataLoader dataProcessor = new CsvFileDataLoader(inputFile);
-        this.analyser = new Analyser( dataProcessor.getContacts() );
+        AddressBookData data = new CsvFileDataLoader(inputFile);
+        this.analyser = new Analyser( data.getContacts() );
     }
 
     /**
-     * Execution entry point
+     * Execution entry point for command-line client program.
      * @param args CSV Address Book file to process expected as 1st arg
      * @throws IOException If issue processing provided file
      */

@@ -14,7 +14,7 @@ import java.util.Set;
  * Processes Address Book data from a CSV file & load into a Contact collection.
  */
 
-public class CsvFileDataLoader {
+public class CsvFileDataLoader implements AddressBookData {
     private Set<Contact> set = new HashSet<>();
 
     // Constants
