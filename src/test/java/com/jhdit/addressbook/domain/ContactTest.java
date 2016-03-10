@@ -25,35 +25,35 @@ public class ContactTest {
 
     @Test
     @Parameters({
-            // fullname , gender , dob
-            "Barek Obama, MALE, 04/08/61",
-            "Hilary Clinton, FEMALE, 26/08/47"
+            // fullname , gender , dob, expectedDateOfBirth
+            "Barek Obama, MALE, 04/08/61, 1961-08-04",
+            "Hilary Clinton, FEMALE, 26/08/47, 1947-08-26"
     })
-    public void testValidInstantiation(String fullname, String genderValue, String dob) {
-        // given
+    public void testValidInstantiation(String fullname, String genderValue, String dob, String expectedDateOfBirth) {
+        // given: a newly instantiated contact
         Gender gender = Gender.valueOf( genderValue );
         Contact contact = new Contact(fullname, gender, dob );
 
-        // then
+        // then: contact data as expected
         assertThat( contact.getFullname(), is( fullname ) );
         assertThat(contact.getGender().toString(), is( genderValue ) );
-        assertThat( contact.getDob(), is( dob ) );
+        assertThat( contact.getDateOfBirth().toString(), is( expectedDateOfBirth ) );
     }
 
     @Test
     @Parameters({
-            // fullname , gender , dob, expectedAge
+            // fullname , gender , dob, expectedAgeInYears
             "Barek Obama, MALE, 04/08/61, 38",
             "Hilary Clinton, FEMALE, 26/08/47, 52"
     })
-    public void testDerivedAge(String fullname, String genderValue, String dob, long expectedAge)    {
+    public void testDerivedAge(String fullname, String genderValue, String dob, long expectedAgeInYears)    {
         // given: valid contact info.
         Gender gender = Gender.valueOf( genderValue );
         Contact contact = new Contact(fullname, gender, dob );
 
-        // then
+        // then: contact age (in years) as expected
         LocalDate millenium = LocalDate.of(2000, 1, 1);
-        assertThat(contact.getAgeInYearsAt(millenium), is(expectedAge));
+        assertThat(contact.getAgeInYearsAt(millenium), is(expectedAgeInYears));
     }
 
     @Test

@@ -12,7 +12,6 @@ import java.time.temporal.ChronoUnit;
 public class Contact {
     private final String fullname;
     private final Gender gender;
-    private final String dob;
     private final LocalDate dateOfBirth;
 
     // Constants
@@ -25,8 +24,7 @@ public class Contact {
 
         this.fullname = fullName;
         this.gender = gender;
-        this.dob = dob;
-        this.dateOfBirth = toDateOfBirth( this.dob );
+        this.dateOfBirth = toDateOfBirth( dob );
     }
 
     public String getFullname() {
@@ -37,8 +35,8 @@ public class Contact {
         return gender;
     }
 
-    public String getDob() {
-        return dob;
+    public LocalDate getDateOfBirth()    {
+        return this.dateOfBirth;
     }
 
     public long getCurrentAgeInYears()   {
@@ -46,7 +44,6 @@ public class Contact {
     }
 
     public long getAgeInYearsAt(final LocalDate targetDate)    {
-        // return Period.between( this.dateOfBirth, targetDate ).getYears();
         return ChronoUnit.YEARS.between( this.dateOfBirth, targetDate );
     }
 
@@ -58,7 +55,7 @@ public class Contact {
         return ChronoUnit.DAYS.between( this.dateOfBirth, targetDate );
     }
 
-    // Internal methods
+    // Internal implementation methods
 
     private LocalDate toDateOfBirth(final String dob)   {
         LocalDate dateOfBirth = LocalDate.parse(dob, DATE_TIME_FORMATTER);
@@ -78,7 +75,6 @@ public class Contact {
         return "Contact{" +
                 "fullname='" + fullname + '\'' +
                 ", gender=" + gender +
-                ", dob='" + dob + '\'' +
                 ", dateOfBirth=" + dateOfBirth +
                 '}';
     }
