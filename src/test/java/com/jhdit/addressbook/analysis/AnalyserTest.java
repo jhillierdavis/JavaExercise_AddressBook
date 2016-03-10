@@ -79,12 +79,17 @@ public class AnalyserTest {
     }
 
     @Test
-    public void findByFirstname()   {
+    @Parameters({
+            // firstname , expectedFullname
+            "Alan, Alan Turing",
+            "Grace, Grace Hopper"
+    })
+    public void findByExistingValidFirstname(String firstname, String expectedFullname)   {
         // given: dummy set of address book contacts
         Set<Contact> allContacts = getTestContacts();
 
         // when: contact sought by first name
-        Optional<Contact> optional = (new Analyser(allContacts).findByFirstname("Alan"));
+        Optional<Contact> optional = (new Analyser(allContacts).findByFirstname(firstname));
 
         // then: matches an entry
         assertTrue(optional.isPresent());
@@ -93,7 +98,7 @@ public class AnalyserTest {
         Contact match = optional.get();
 
         // then: is expected entry
-        assertThat(match.getFullname(), is("Alan Turing") );
+        assertThat(match.getFullname(), is(expectedFullname) );
     }
 
 
