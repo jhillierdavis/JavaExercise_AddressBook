@@ -1,22 +1,23 @@
-Java Application project template
-------------------------------------
+Java Application: Address Book Exercise
+---------------------------------------
 
-You have just created a basic Java application. There is a standard project
-structure for source code and tests.
+Simple Java application created as exercise to read a CSV AddressBook file and answer the following questions:
 
-In this project you get:
+1. How many males are in the address book?
+2. Who is the oldest person in the address book?
+3. How many days older is Bill than Paul?
 
-* A Gradle build file
-* A standard project structure:
 
-    <proj>
-      |
-      +- src
-          |
-          +- main
-          |     |
-          |     +- java
-          |
-          +- test
-          |   |
-          |   +- java
+Example execution & output:
+---------------------------
+
+$ gradle run -Dexec.args="./src/test/resources/com/jhdit/addressbook/addressbook.csv"
+
+1. How many males are in the address book?
+Answer: 3
+
+2. Who is the oldest person in the address book?
+Answer: Wes Jackson
+
+3. How many days older is Bill than Paul?
+Answer: 2862 days.
