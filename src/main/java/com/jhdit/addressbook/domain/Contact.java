@@ -3,9 +3,10 @@ package com.jhdit.addressbook.domain;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
+import java.util.Objects;
 
 /**
- * Represents an Address Book contact (i.e. details of a person)
+ * Represents an Address Book contact (i.e. basic details for a person)
  */
 
 
@@ -70,6 +71,8 @@ public class Contact {
         return dateOfBirth;
     }
 
+    // IDE generated implementations
+
     @Override
     public String toString() {
         return "Contact{" +
@@ -77,5 +80,20 @@ public class Contact {
                 ", gender=" + gender +
                 ", dateOfBirth=" + dateOfBirth +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Contact contact = (Contact) o;
+        return Objects.equals(fullname, contact.fullname) &&
+                Objects.equals(gender, contact.gender) &&
+                Objects.equals(dateOfBirth, contact.dateOfBirth);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(fullname, gender, dateOfBirth);
     }
 }
