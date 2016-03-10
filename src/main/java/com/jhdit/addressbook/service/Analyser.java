@@ -19,12 +19,11 @@ import static java.util.Comparator.comparing;
  */
 
 public class Analyser {
-    Set<Contact> contacts;
+    private Set<Contact> contacts;
 
     public Analyser(final Set<Contact> contacts) {
         this.contacts = contacts;
     }
-
 
     public  Set<Contact> filterByGender(final Gender gender)   {
         if ( null == gender ) {
