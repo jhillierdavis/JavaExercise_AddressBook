@@ -21,7 +21,7 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertFalse;
 
 /**
- * Unit tests for Address Book Analyser.
+ * Unit tests for address book Analyser.
  *
  * Example stand-alone execution:
  * ------------------------------
