@@ -11,6 +11,15 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
+/**
+ * Unit tests for DataProcessor
+ *
+ * Example stand-alone execution:
+ * ------------------------------
+ *
+ * gradle test --tests *DataProcessorTest --rerun-tasks
+ */
+
 public class DataProcessorTest {
 
     // Obtain test resource file
@@ -55,6 +64,5 @@ public class DataProcessorTest {
 
         assertThat(set.size(), is(5));
     }
-
 
 }

@@ -24,8 +24,12 @@ import static org.mockito.BDDMockito.*;
  *
  * Uses JUnitParams see: https://github.com/Pragmatists/junitparams/wiki/Quickstart
  *
- * Execution:
- * ----------
+ * NB: Attempts to emulate Spock framework (& BDD style) via JUnit e.g. using parameters (for data driven approach).
+ * ( See http://spockframework.github.io/spock/docs/1.0/index.html )
+ *
+ *
+ * Example stand-alone execution:
+ * ------------------------------
  *
  * gradle test --tests *JUnitVerificationTest --rerun-tasks
  */

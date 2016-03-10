@@ -11,7 +11,12 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 
 /**
- * Unit test for Contact
+ * Unit tests for Contact
+ *
+ * Example stand-alone execution:
+ * ------------------------------
+ *
+ * gradle test --tests *ContactTest --rerun-tasks
  */
 
 @RunWith(JUnitParamsRunner.class)
@@ -63,6 +68,5 @@ public class ContactTest {
         // then:
         assertThat(differenceInDays, is( NON_LEAP_YEAR_IN_DAYS ));
     }
-
 
 }

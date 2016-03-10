@@ -23,8 +23,6 @@ import static org.junit.Assert.assertFalse;
 /**
  * Unit tests for Address Book Analyser.
  *
- * NB: Attempts to emulate Spock framework (& BDD style) via JUnit e.g. using parameters (for data driven approach).
- *
  * Example stand-alone execution:
  * ------------------------------
  *
