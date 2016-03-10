@@ -13,7 +13,7 @@ import static java.util.stream.Collectors.toSet;
 import static java.util.Comparator.comparing;
 
 /**
- * Analyser service for Contacts (e.g. obtained from an Address Book)
+ * Analyser service for Address Contacts (e.g. obtained from an Address Book)
  *
  * NB: Requires Java 8 (since uses Streams & Lambda functions)
  */
