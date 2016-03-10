@@ -4,7 +4,9 @@ import com.jhdit.addressbook.domain.Contact;
 import com.jhdit.addressbook.domain.Gender;
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
 
 import java.util.HashSet;
@@ -16,6 +18,7 @@ import java.util.Set;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertFalse;
 
 /**
  * Unit tests for Address Book Analyser.
@@ -82,14 +85,16 @@ public class AnalyserTest {
     @Parameters({
             // firstname , expectedFullname
             "Alan, Alan Turing",
-            "Grace, Grace Hopper"
+            "alan, Alan Turing",
+            "Grace, Grace Hopper",
+            "GRACE, Grace Hopper"
     })
-    public void findByExistingValidFirstname(String firstname, String expectedFullname)   {
+    public void findByExistingValidFirstName(String firstName, String expectedFullname)   {
         // given: dummy set of address book contacts
         Set<Contact> allContacts = getTestContacts();
 
         // when: contact sought by first name
-        Optional<Contact> optional = (new Analyser(allContacts).findByFirstname(firstname));
+        Optional<Contact> optional = (new Analyser(allContacts).findByFirstName(firstName));
 
         // then: matches an entry
         assertTrue(optional.isPresent());
@@ -101,12 +106,54 @@ public class AnalyserTest {
         assertThat(match.getFullname(), is(expectedFullname) );
     }
 
+    @Test
+    @Parameters({
+            // firstname , expectedFullname
+            "Bogus, ",
+            "Absent, "
+    })
+    public void findByNonExistentFirstName(String firstName, String expectedFullname)   {
+        // given: dummy set of address book contacts
+        Set<Contact> allContacts = getTestContacts();
+
+        // when: contact sought by first name (which has no corresponding match)
+        Optional<Contact> optional = (new Analyser(allContacts).findByFirstName(firstName));
+
+        // then: is unmatched
+        assertFalse(optional.isPresent());
+    }
+
+    @Rule
+    public ExpectedException thrown = ExpectedException.none();
+
+    @Test
+    @Parameters({
+            // firstName, expectedExceptionMessage
+            "NULL, Invalid parameter: firstName: NULL",
+            ", Invalid parameter: firstName: ",
+            "   , Invalid parameter: firstName: "
+    })
+    public void findByInvalidFirstName(String firstName, String expectedExceptionMessage)   {
+        // given: dummy set of address book contacts
+        Set<Contact> allContacts = getTestContacts();
+
+        // expect: "the exception is caught & can be verified"
+        thrown.expect( IllegalArgumentException.class );
+        thrown.expectMessage( expectedExceptionMessage );
+
+        // when: contact sought by first name (which has no corresponding match)
+        if ("NULL".equals(firstName))   {
+            firstName = null; // Set to null (as not currently sure how to do this via parameters directly)
+        }
+        Optional<Contact> optional = (new Analyser(allContacts).findByFirstName(firstName));
+    }
+
 
     private Set<Contact> getTestContacts()  {
         Set<Contact> dummyData = new HashSet<>();
 
-        dummyData.add( new Contact( "Charles Babbage", Gender.MALE, "26/12/91" )); // 1791, but will be treated as 1991 for our purposes
-        dummyData.add( new Contact( "Ada Lovelace", Gender.FEMALE, "10/12/15") ); // 1815, but will be treated as 2015 for our purposes
+        dummyData.add( new Contact( "Charles Babbage", Gender.MALE, "26/12/91" )); // Born in 1791, but will be treated as 1991 for our purposes
+        dummyData.add( new Contact( "Ada Lovelace", Gender.FEMALE, "10/12/15") ); // Born in 1815, but will be treated as 2015 for our purposes
         dummyData.add( new Contact( "Grace Hopper", Gender.FEMALE, "09/12/06") );
         dummyData.add( new Contact( "Alan Turing", Gender.MALE, "23/06/12") );
         dummyData.add( new Contact( "Adele Goldberg", Gender.FEMALE, "07/07/45") );
