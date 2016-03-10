@@ -1,0 +1,41 @@
+apply plugin: "java"
+apply plugin: "application"
+
+mainClassName = ''
+
+run {    
+    /* Can pass all the properties: */
+    systemProperties System.getProperties()
+
+    /* Or just each by name: */
+    // systemProperty "myvariable", System.getProperty("myvariable")
+
+    /* Need to split the space-delimited value in the exec.args */
+    args System.getProperty("exec.args") ?: []    
+}
+
+// see http://mrhaki.blogspot.co.uk/2010/11/gradle-goodness-set-java-version.html
+sourceCompatibility = 1.8 // or '1.6', '6', 6, JavaVersion.VERSION_1_6, new Compatibility('Java 6')
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+	// Java
+	compile 'com.fasterxml.jackson.core:jackson-databind:2.7.0'
+	testCompile 'junit:junit:4.+'
+    testCompile 'pl.pragmatists:JUnitParams:1.+' // See http://mvnrepository.com/artifact/pl.pragmatists/JUnitParams
+	testCompile 'org.mockito:mockito-core:1.10.19'
+}
+
+test {
+
+    testLogging {
+		// Output status of each test
+    	events "passed", "skipped", "failed", "standardOut", "standardError"
+
+        // Make sure output from  standard out or error is show in Gradle output.
+        showStandardStreams = true
+    }
+}
